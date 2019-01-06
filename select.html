@@ -1,0 +1,36 @@
+<html>
+<script src="select.js"></script>
+<style>
+#parent {
+    display: table;
+    width: 100%;
+}
+#form_login {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+#service_input {
+    width: 800px;
+    height: 40px;
+    font-size:24pt;
+}
+.custom {
+	font-family: Courier;
+	color: white;
+	font-size:24px;
+}
+</style>
+<body bgcolor=black>
+    <div id="parent">
+        <form id="form_login">
+            <p class="custom">
+                Service Name
+            </p>
+            <p>
+                <input id="service_input" type="text" id="server" placeholder="ec2" onchange="selectService()" />
+            </p>
+        </form>
+    </div>
+</body>
+</html>

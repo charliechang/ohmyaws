@@ -1,0 +1,26 @@
+{
+    "name": "OhMyAWS",
+    "description": "Shortcuts to AWS services (EC2, S3, CloudWatch and ElasticCache)",
+    "version": "1.0.2",
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "https://signin.aws.amazon.com/saml"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "background" : {
+      "scripts" : ["background.js"]
+    },
+    "commands": {
+      "toggle-menu-page": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+A",
+          "mac": "Command+Shift+A"
+        },
+        "description": "Toggle the menu"
+      }
+    },
+    "manifest_version":2
+}
