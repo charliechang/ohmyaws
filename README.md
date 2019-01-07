@@ -14,4 +14,5 @@ Currently following commands are supported:
 | `asg` |  Jump to AWS Auto Scaling Group |
 | `s3`  | Jump to AWS S3|
 | `redis`| Jump to AWS Elasticache Redis|
+| `watch` | Jump to AWS CloudWatch | 
 
