@@ -20,8 +20,9 @@ awsUrls = {
     ,
     s3: "https://s3.console.aws.amazon.com/s3/home?region=" + aws_region + "#"
     ,
-    watch: "https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=" + aws_region + "#"
-
+    watch: "https://" + aws_region + ".console.aws.amazon.com/cloudwatch/home?region=" + aws_region + "#"
+    ,
+    53: "https://console.aws.amazon.com/route53/home?region=" + aws_region + "#"
 }
 
 tabStatusDict = {}
