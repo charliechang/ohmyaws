@@ -16,4 +16,4 @@ Currently following commands are supported:
 | `redis`| Jump to AWS Elasticache Redis|
 | `watch` | Jump to AWS CloudWatch | 
 | `53` | Jump to AWS Route53 | 
-
+| `ebs` | Jump to AWS EBS volumes | 
