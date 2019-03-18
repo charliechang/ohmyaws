@@ -23,6 +23,8 @@ awsUrls = {
     watch: "https://" + aws_region + ".console.aws.amazon.com/cloudwatch/home?region=" + aws_region + "#"
     ,
     53: "https://console.aws.amazon.com/route53/home?region=" + aws_region + "#"
+    ,
+    ebs: "https://" + aws_region + ".console.aws.amazon.com/ec2/v2/home?region=" + aws_region + "#Volumes:sort=availabilityZone"
 }
 
 tabStatusDict = {}
