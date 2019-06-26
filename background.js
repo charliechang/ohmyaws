@@ -7,6 +7,7 @@
  *
  * */
 aws_region = "eu-central-1"
+default_account_name = "reco"
 awsUrls = {
     ec2: "https://" + aws_region + ".console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Instances:sort=tag:Name"
     ,
@@ -29,14 +30,17 @@ awsUrls = {
 
 tabStatusDict = {}
 tabTargetUrl = {}
+tabAccountUrl = {}
 tmpTargetUrl = null
 
 function initLoginPage(tab) {
     console.log("tab is created")
     tabStatusDict[tab.id] = 'init'
     tabTargetUrl[tab.id] = tabTargetUrl[tab.openerTabId]
+    tabAccountUrl[tab.id] = tabAccountUrl[tab.openerTabId]
     tabTargetUrl[tab.openerTabId] = null
-    console.log("init tab id:" + tab.id + " url:" + tabTargetUrl[tab.id])
+    tabAccountUrl[tab.openerTabId] = null
+    console.log("init tab id:" + tab.id + " account:" + tabAccountUrl[tab.id] + " url:" + tabTargetUrl[tab.id])
 }
 
 function loginStart(tab) {
@@ -56,6 +60,24 @@ function accessPage(tab) {
     chrome.tabs.update(tab.id, {url:url}, done)
 }
 
+function findServiceName(rawInput) {
+    for(const key in awsUrls) {
+        if(rawInput.endsWith(key)) {
+            return awsUrls[key]
+        }
+    }
+    return null
+}
+
+function findAccountName(rawInput) {
+    for(const key in awsUrls) {
+        if(rawInput.endsWith(key)) {
+            return rawInput.substring(0, rawInput.length - key.length)
+        }
+    }
+    return null
+}
+
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
     if (changeInfo.status != 'complete') {
         return
@@ -71,16 +93,17 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
         accessPage(tab)
     }
 });
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         tab = sender.tab
-        target_url = null
-        serviceName = request.serviceName
-        target_url = awsUrls[serviceName]
+        account_name = findAccountName(request.serviceName)
+        target_url = findServiceName(request.serviceName)
   
         if(target_url) {
+            tabAccountUrl[tab.id] = account_name
             tabTargetUrl[tab.id] = target_url
-            chrome.tabs.create({url: 'https://aws.zalando.net', openerTabId: tab.id}, initLoginPage)
+            chrome.tabs.create({url: 'https://aws-chooser.zalando.net/direct', openerTabId: tab.id}, initLoginPage)
             chrome.tabs.remove(tab.id, null)
         }
     });
