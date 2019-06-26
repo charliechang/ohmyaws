@@ -45,7 +45,11 @@ function initLoginPage(tab) {
 
 function loginStart(tab) {
     tabStatusDict[tab.id] = 'login'
-    chrome.tabs.executeScript(tab.id, {file: "login.js"}, null);
+    chrome.tabs.executeScript(tab.id, {
+        code: "var accountName = \'" + tabAccountUrl[tab.id] + "\';"
+    }, function() {
+        chrome.tabs.executeScript(tab.id, {file: "login.js"})
+    });
 }
 
 function done(tab) {
@@ -87,7 +91,7 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
     url = tab.url
     console.log("tab " + tabId + " is " + status)
     console.log(url)
-    if("init" == status && "https://signin.aws.amazon.com/saml" == url) {
+    if("init" == status && "https://aws-chooser.zalando.net/direct" == url) {
         loginStart(tab)
     } else if("login" == status) {
         accessPage(tab)
