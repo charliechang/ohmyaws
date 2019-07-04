@@ -5,6 +5,7 @@
     "permissions": [
         "tabs",
         "activeTab",
+        "storage",
         "https://aws-chooser.zalando.net/direct"
     ],
     "browser_action": {
