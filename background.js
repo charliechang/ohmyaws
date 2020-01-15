@@ -7,7 +7,6 @@
  *
  * */
 aws_region = "eu-central-1"
-default_account_name = "reco"
 awsUrls = {
     ec2: "https://" + aws_region + ".console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Instances:sort=tag:Name"
     ,
@@ -26,6 +25,10 @@ awsUrls = {
     53: "https://console.aws.amazon.com/route53/home?region=" + aws_region + "#"
     ,
     ebs: "https://" + aws_region + ".console.aws.amazon.com/ec2/v2/home?region=" + aws_region + "#Volumes:sort=availabilityZone"
+    ,
+    iam: "https://console.aws.amazon.com/iam/home?region=" + aws_region + "#/home"
+    ,
+    format: "https://" + aws_region + ".console.aws.amazon.com/cloudformation/home"
 }
 
 tabStatusDict = {}
